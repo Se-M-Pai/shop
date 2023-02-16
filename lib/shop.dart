@@ -4,14 +4,30 @@ import 'package:intl/intl.dart';
 void main(List<String> arguments) {
 
   var num = NumberFormat(".##");
-  double number = double.parse(stdin.readLineSync()!);
-  print(num.format(number));
+  /*double number = double.parse(stdin.readLineSync()!);
+  print(num.format(number));*/
 
-  PriceFormatter
+  int discountLevel = int.parse(stdin.readLineSync()!);
 
-  /*Employee bob = Employee("Bob", "Google");
-  bob.display();  // Employee name: Bob
-  bob.work();     // Employee works in Google*/
+  switch(discountLevel){
+    case 1:
+      PriceFormatter prices = DiscountLevelOne();
+      prices.price = double.parse(stdin.readLineSync()!);
+      prices.discountPrice();
+      break;
+    case 2:
+      PriceFormatter prices = DiscountLevelTwo();
+      prices.price = double.parse(stdin.readLineSync()!);
+      prices.discountPrice();
+      break;
+    case 3:
+      PriceFormatter prices = DiscountLevelThree();
+      prices.price = double.parse(stdin.readLineSync()!);
+      prices.discountPrice();
+      break;
+    default:
+      print("Error");
+  }
 }
 
 class PriceFormatter {
@@ -19,50 +35,49 @@ class PriceFormatter {
   late int discountPercent;
 
   void discountPrice() {
-    double discPrice = price * (1 - discountPercent / 100);
+    double discPrice = 0;
+    print(discPrice);
   }
 }
 
-class ExampleUnitTest implements PriceFormatter {
+class DiscountLevelOne implements PriceFormatter {
   @override
-  double price = double.parse(stdin.readLineSync()!);
+  late double price;
 
   @override
-  late int discountPercent;
+  int discountPercent = 10;
 
   @override
   void discountPrice() {
-    super()
+    double discPrice = price * (1 - discountPercent / 100);
+    print(discPrice);
   }
 }
 
-class Person{
+class DiscountLevelTwo implements PriceFormatter {
+  @override
+  late double price;
 
-  String name;
-  Person(this.name);
+  @override
+  int discountPercent = 20;
 
-  void display(){
-    print("Name: $name");
+  @override
+  void discountPrice() {
+    double discPrice = price * (1 - discountPercent / 100);
+    print(discPrice);
   }
 }
-class Worker{
-  String company = "";
-  void work(){
-    print("Work in $company");
+
+class DiscountLevelThree implements PriceFormatter {
+  @override
+  late double price;
+
+  @override
+  int discountPercent = 30;
+
+  @override
+  void discountPrice() {
+    double discPrice = price * (1 - discountPercent / 100);
+    print(discPrice);
   }
 }
-class Employee implements Person, Worker{
-
-  String name;            // реализация поля name из Person
-  String company;         // реализация поля company из Worker
-  // реализация метода display Person
-  void display(){
-    print("Employee name: $name");
-  }
-  // реализация метода work из Worker
-  void work(){
-    print("Employee works in $company");
-  }
-
-  Employee(this.name, this.company);
-}*/
