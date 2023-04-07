@@ -1,83 +1,90 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/foundation.dart';
+import 'package:shop/models/catalog.dart';
 
-void main(List<String> arguments) {
 
-  var num = NumberFormat(".##");
-  /*double number = double.parse(stdin.readLineSync()!);
-  print(num.format(number));*/
+class ShopController {
+  //var num = NumberFormat(".##");
+  //double number = double.parse(stdin.readLineSync()!);
+  //print(num.format(number));
 
-  int discountLevel = int.parse(stdin.readLineSync()!);
-
-  switch(discountLevel){
-    case 1:
-      PriceFormatter prices = DiscountLevelOne();
-      prices.price = double.parse(stdin.readLineSync()!);
-      prices.discountPrice();
-      break;
-    case 2:
-      PriceFormatter prices = DiscountLevelTwo();
-      prices.price = double.parse(stdin.readLineSync()!);
-      prices.discountPrice();
-      break;
-    case 3:
-      PriceFormatter prices = DiscountLevelThree();
-      prices.price = double.parse(stdin.readLineSync()!);
-      prices.discountPrice();
-      break;
-    default:
-      print("Error");
-  }
+  late int discountLevel;
 }
 
 class PriceFormatter {
-  late double price;
-  late int discountPercent;
+  double discountPercent = 0.0;
 
   void discountPrice() {
-    double discPrice = 0;
+    double discPrice = (1 - discountPercent / 100);
     print(discPrice);
+  }
+  void debugprint(){
+    debugPrint(discountPercent.toString());
+  }
+
+}
+
+class DiscountLevelZero implements PriceFormatter {
+
+  @override
+  double discountPercent = 0.0;
+
+  @override
+  void discountPrice() {
+    double discPrice = (1 - discountPercent / 100);
+    print(discPrice);
+  }
+
+  void debugprint(){
+    debugPrint(discountPercent.toString());
   }
 }
 
 class DiscountLevelOne implements PriceFormatter {
-  @override
-  late double price;
 
   @override
-  int discountPercent = 10;
+  double discountPercent = 11.0;
 
   @override
   void discountPrice() {
-    double discPrice = price * (1 - discountPercent / 100);
+    double discPrice = (1 - discountPercent / 100);
     print(discPrice);
+  }
+
+  void debugprint(){
+    debugPrint(discountPercent.toString());
   }
 }
 
 class DiscountLevelTwo implements PriceFormatter {
-  @override
-  late double price;
 
   @override
-  int discountPercent = 20;
+  double discountPercent = 22.0;
 
   @override
   void discountPrice() {
-    double discPrice = price * (1 - discountPercent / 100);
+    double discPrice = (1 - discountPercent / 100);
     print(discPrice);
+  }
+
+  void debugprint(){
+    debugPrint(discountPercent.toString());
   }
 }
 
 class DiscountLevelThree implements PriceFormatter {
   @override
-  late double price;
-
-  @override
-  int discountPercent = 30;
+  double discountPercent = 33.0;
 
   @override
   void discountPrice() {
-    double discPrice = price * (1 - discountPercent / 100);
+    double discPrice = (1 - discountPercent / 100);
     print(discPrice);
+  }
+
+  void debugprint(){
+    debugPrint(discountPercent.toString());
   }
 }
