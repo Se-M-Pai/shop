@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 class PersonalInfoDialog extends StatefulWidget {
   @override
@@ -62,7 +62,7 @@ class _PersonalInfoDialogState extends State<PersonalInfoDialog> {
               },
               onChanged: (value) {
                 setState(() {
-                  _phoneNumberValid = _phoneController.text.length == _phoneController.mask.length;
+                  _phoneNumberValid = _phoneController.text.length == _phoneController.mask?.length;
                 });
               },
               onSaved: (value) {
